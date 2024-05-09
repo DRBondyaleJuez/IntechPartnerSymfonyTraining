@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('styles/userRegistration') }}
+{% endblock %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    <h1> USER REGISTERED SUCCESSFULLY ✅</h1>
+    <h2> Welcome {{ username }}! </h2>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('scripts/userRegistration') }}
+{% endblock %}

@@ -1,0 +1,99 @@
+@import '../utils/index';
+@import '../components/horizontal-lines.scss';
+@import '../components/buttons.scss';
+@import '../components/shopping-cart-pluggin.scss';
+@import '../components/spinner.scss';
+
+
+.main-wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header{
+    @include flex-row-centered;
+    //max-width:1000px;
+    text-transform: uppercase;
+    background-image: url(http://neighborhood.swiftideas.net/wp-content/uploads/2013/06/ff_rp_bkg2.png);
+    background-repeat: repeat;
+    background-position: center top;
+    background-size: auto;
+    width:100%;
+    justify-content:space-evenly;
+}
+
+.product-name-section{
+    @include flex-row-centered;
+}
+
+.product-name{
+    max-width: 1000px;
+    width:100%;
+    text-align:left;
+}
+
+
+.product-content-section{
+    @include flex-row-centered;
+
+    .product-image-section{
+        flex:1;
+        height:500px;
+        width:500px;
+        max-width: 500px;
+        background-color: $product-beige;
+        margin:20px;
+
+        .product-image{
+            width:100%;
+            height:100%;
+            object-fit: contain;
+        }
+    }
+
+    .product-info-section{
+        align-self: start;
+        max-width: 500px;
+        flex:1;
+
+        .product-price-section{
+            margin:10px;
+            display:flex;
+            flex-direction: horizontal;
+            align-items: center;
+            gap:20px;
+
+            .product-price{
+                margin:0;
+                color: $higher-price-red;
+                text-decoration-line: line-through;
+                font-size: smaller;
+            }
+
+            .product-offerprice{
+                margin:0;
+            }
+        }
+
+        .product-description-section{
+            color:$dark-button-grey;
+
+            &__title-section{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width:500px;
+
+                &:hover{
+                    cursor: pointer;
+                    color:$highlight-blue;
+                }
+            }
+        }
+    }
+}
+
+
+
+

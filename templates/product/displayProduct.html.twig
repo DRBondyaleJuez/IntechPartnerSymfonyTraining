@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('styles/displayProduct') }}
+{% endblock %}
+
+{% block title %}Product {% endblock %}
+
+{% block body %}
+
+<div class="main-wrapper">
+    <div class="header">
+        <h1 class="header-title">
+            Product Display
+        </h1>
+        <div class="shopping-cart-pluggin">
+            <div class="shopping-cart-pluggin__icon">
+                <img class="icon-image" src="https://cdn-icons-png.freepik.com/128/2838/2838838.png">
+            </div>
+            <p class="shopping-cart-pluggin__price-display"> 0.00 € </p>
+        </div>
+    </div>
+
+    <div class="product-name-section">
+        <h2 class="product-name">
+            {{ productInfo.getName()}}
+        </h2>
+    </div>
+
+    <div class="product-content-section">
+
+        <div class="product-image-section">
+            <img class="product-image" src="{{ productInfo.getMediaurl()}}">
+        </div>
+
+        <div class="product-info-section">
+
+            <div class="product-price-section">
+                <h2 class="product-price">
+                    {{ productInfo.getPrice()}}€
+                </h2>
+                <h2 class="product-offerprice" data-price="{{ productInfo.getOfferprice() }}">
+                    {{ productInfo.getOfferprice()}}€
+                </h2>
+
+            </div>
+
+            <hr class="horizontal-line-top horizontal-line">
+
+            <div class="product-spinner-section">
+                <div class="quantity-spinner">
+                    <div class="quantity-display">
+                        <input class="quantity-input" placeholder="1">
+          ˙˙          </div>
+                    <div class="spinner-arrows">
+                        <button class="spinner-arrows__up spinner-button">
+                            ▲
+                        </button>
+                        <button class="spinner-arrows__down spinner-button">
+                            ▼
+                        </button>
+                    </div>
+                </div>
+                <button class="add-to-cart-button dark-button">
+                    + Add to cart
+                </button>
+            </div>
+
+            <hr class="horizontal-line-middle horizontal-line">
+
+            <div class="product-description-section">
+                <div class="product-description-section__title-section">
+                    <h3 class="product-description-section__title">
+                        Description
+                    </h3>
+                    <p class="product-description-section__dropdown-arrow">
+                        ▼
+                    </p>
+                </div>
+                <div class="product-description-section__dropdown-content">
+                    <p class="product-description-section__description">
+                        {{ productInfo.getDescription()}}
+                    </p>
+                    <p class="product-description-section__package">
+                        {{ productInfo.getPackage()}}
+                    </p>
+                    <p class="product-description-section__content">
+                        {{ productInfo.getContent()}}
+                    </p>
+                </div>
+            </div>
+
+            <hr class="horizontal-line-bottom horizontal-line">
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('scripts/displayProduct') }}
+{% endblock %}

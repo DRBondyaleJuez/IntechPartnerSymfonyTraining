@@ -1,0 +1,11 @@
+
+
+.filters-section-wrapper {
+    @include flex-row-centered;
+    gap:20px;
+    max-width: 1000px;
+
+    .sort-section{
+        @include flex-row-centered;
+    }
+}

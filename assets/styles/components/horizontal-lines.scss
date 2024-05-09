@@ -1,0 +1,5 @@
+@import '../utils/index';
+
+.horizontal-line{
+    border: solid 0.5px lighten($product-grey,50%);
+}

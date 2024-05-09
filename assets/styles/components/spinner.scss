@@ -1,0 +1,51 @@
+@import '../utils/index';
+
+.product-spinner-section{
+    display:flex;
+    flex-direction: horizontal;
+    gap:10px;
+    margin:10px;
+
+    .quantity-spinner{
+        display:flex;
+        flex-direction: horizontal;
+        justify-content: flex-start;
+        width:80px;
+        height: 40px;
+        background-color: $product-beige;
+        color:$product-grey;
+
+        .quantity-input{
+            flex:2;
+            height:100%;
+            width:100%;
+            border: none;
+            background-color: transparent;
+            color: $product-grey;
+            text-align: center;
+        }
+
+        .spinner-arrows{
+            flex:3;
+            height:100%;
+            width:100%;
+            display:flex;
+            flex-direction: column;
+            border: none;
+            border-radius: 0;
+
+            .spinner-button {
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+                color: $product-grey;
+                font-size: 15px;
+
+                &:hover{
+                    cursor: pointer;
+                    color: $highlight-blue;
+                }
+            }
+        }
+    }
+}

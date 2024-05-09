@@ -1,0 +1,23 @@
+@import '../utils/index';
+
+.shopping-cart-pluggin{
+    @include flex-row-centered;
+    padding: 0 20px;
+    border-left: solid 1px lighten($product-grey, 30%);
+    gap: 15px;
+
+    &__icon{
+        height: 40px;
+        width: 40px;
+
+        .icon-image{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__price-display{
+        font-size: larger;
+        font-weight: bolder;
+    }
+}

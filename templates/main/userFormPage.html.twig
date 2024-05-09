@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('styles/userRegistration') }}
+{% endblock %}
+
+{% block title %} {{'User-Form'}} {% endblock %}
+
+{% block body %}
+
+<div class='form-wrapper' >
+
+<h1 class='form-title'> USER FORM </h1>
+
+<p class = 'form-text'>Please fill the form section below:</p>
+
+<div class ='form-section'>
+
+    <div class = 'form-question-wrapper'>
+        <div class = 'form-section__question'>
+            <p> Username: </p>
+        </div>
+        <div class = 'form-section__input-wrapper'>
+            <input class = 'form-section__input' placeholder="Enter username..." >
+        </div>
+        <p> * </p>
+    </div>
+
+    <div class = 'form-question-wrapper'>
+        <div class = 'form-section__question'>
+            <p> Password: </p>
+        </div>
+        <div class = 'form-section__input-wrapper'>
+            <input class = 'form-section__input' placeholder="Enter password.." >
+        </div>
+        <p> * </p>
+    </div>
+
+    <div class = 'form-question-wrapper'>
+        <div class = 'form-section__question'>
+            <p> First Name: </p>
+        </div>
+        <div class = 'form-section__input-wrapper'>
+            <input class = 'form-section__input' placeholder="Enter first name..." >
+        </div>
+    </div>
+
+    <div class = 'form-question-wrapper'>
+        <div class = 'form-section__question'>
+            <p> Last Name: </p>
+        </div>
+        <div class = 'form-section__input-wrapper'>
+            <input class = 'form-section__input' placeholder="Enter lastname..." >
+        </div>
+    </div>
+
+    <div class = 'form-question-wrapper'>
+        <div class = 'form-section__question'>
+            <p> Telephone Nº: </p>
+        </div>
+        <div class = 'form-section__input-wrapper'>
+            <input class = 'form-section__input' placeholder="Example 621223344..." >
+        </div>
+    </div>
+
+    <div class = 'form-question-wrapper'>
+        <div class = 'from-section__question'>
+            <p> E-mail Address: </p>
+        </div>
+        <div class = 'form-section__input-wrapper'>
+            <input class = 'form-section__input' placeholder="example@mail.com" >
+        </div>
+        <p> * </p>
+    </div>
+
+</div>
+
+<div class='check-conditions-section'>
+    <div class='check-conditions-section'>
+        <input type="checkbox" class='check-conditions-section__checkbox'>
+        </input>
+        <p class='check-conditions-section__text'>
+        I agree with the GDPR terms and conditions *
+        </p>
+    </div>
+</div>
+
+<div class='form-error-message-section'>
+    <p>
+        * Mandatory fill in
+    </p>
+    <p class='form-error-message-section__error-message error-message'>
+
+    </p>
+</div>
+
+<div class='registration-section'>
+    <div class='registration-button-section'>
+        <button class='registration-section__register-button'> Register </button>
+    </div>
+    <div class='registration-error-message-section'>
+        <p class='registration-section__error-message error-message'>
+
+        </p>
+    </div>
+</div>
+
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('scripts/userRegistration') }}
+{% endblock %}

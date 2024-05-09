@@ -1,0 +1,11 @@
+.dark-button{
+    padding:5px 10px;
+    border: none;
+    background-color: $dark-button-grey;
+    color: $product-beige;
+
+    &:hover{
+        cursor: pointer;
+        color: $highlight-blue;
+    }
+}
