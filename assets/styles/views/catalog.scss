@@ -5,6 +5,15 @@
 
 
 body{
-background-color: gray;
+background-color: $product-grey;
 }
+
+
+.product-card-section {
+    @include flex-row-centered;
+    flex-flow:wrap;
+    gap: 20px;
+
+}
+
 

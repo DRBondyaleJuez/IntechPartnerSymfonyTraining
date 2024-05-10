@@ -1,4 +1,4 @@
-
+@import '../utils/index';
 
 .filters-section-wrapper {
     @include flex-row-centered;
@@ -7,5 +7,51 @@
 
     .sort-section{
         @include flex-row-centered;
+        position: relative;
+
+        .sort-input{
+
+            width: 50px;
+            height: 25px;
+            background-color: white;
+            border:none;
+            color: $dark-button-grey;
+            text-align: right;
+            &:hover{
+                background-color: red;
+                .sort-section .sort-dropdown{
+                    visibility: visible;
+                }
+            }
+        }
+
+        .sort-input:hover
+
+
+        .sort-dropdown{
+            width: 100%;
+
+            position: absolute;
+            z-index: 1;
+            top:80%;
+            visibility: hidden;
+
+            &:hover{
+                visibility: visible;
+            }
+
+            &__list{
+                &-item{
+                    &:hover{
+                        cursor: pointer;
+                        background-color: $highlight-blue;
+                    }
+                }
+            }
+
+
+        }
     }
+
+
 }
