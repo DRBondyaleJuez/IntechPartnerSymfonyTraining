@@ -39,7 +39,7 @@ export default {
   methods: {
     async buildProductCardSection() {
       try {
-        this.productInfoList =  await requestProductInfoJSON();//this.requestProductInfo();
+        this.productInfoList =  await this.requestProductInfo();
         console.log("Product Info list:");
         console.log(this.productInfoList);
 

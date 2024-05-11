@@ -1,20 +1,22 @@
 <template>
   <div class="filter-menu-section">
-    <p> I am the filter menu </p>
     <div class="filters-section-wrapper">
 
       <h2> Filters:</h2>
 
       <div class="sort-section">
         <h3> Sort by: </h3>
-        <button class = "sort-input">▼</button>
-        <div class = "sort-dropdown">
-          <ul class="sort-dropdown__list">
-            <li class="sort-dropdown__list-item">Name</li>
-            <li class="sort-dropdown__list-item">Price</li>
-            <li class="sort-dropdown__list-item">id</li>
-          </ul> 
+        <div class="sort-dropdown-section">
+          <button class = "sort-input">▼</button>
+          <div class = "sort-dropdown">
+            <ul class="sort-dropdown__list">
+              <li class="sort-dropdown__list-item">Name</li>
+              <li class="sort-dropdown__list-item">Price</li>
+              <li class="sort-dropdown__list-item">id</li>
+            </ul> 
+          </div>
         </div>
+
       </div>
 
       <div class="text-filter-section">
