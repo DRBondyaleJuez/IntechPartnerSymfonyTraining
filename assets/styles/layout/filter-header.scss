@@ -8,7 +8,7 @@
     .sort-section{
         @include flex-row-centered;
         position: relative;
-        gap:5px;
+        gap: 5px;
 
         .sort-dropdown-section{
 
@@ -16,43 +16,43 @@
 
             &:hover{
                 .sort-dropdown{
-                    //visibility: visible;
                     display: block
                 }
             }
 
             .sort-input{
+                @include flex-row-centered;
+                justify-content: space-evenly;
                 width: 100%;
                 height: 100%;
+                padding:0;
                 border:none;
                 color: $dark-button-grey;
-                text-align: right;
             }
-            
+
             .sort-dropdown{
                 width: inherit;
                 padding:0;
                 position: absolute;
                 z-index: 1;
                 top:65%;
-                //visibility: hidden;
                 display: none;
                 background-color: white;
                 box-shadow: 0 2px 2px $dark-button-grey;
-    
+
                 &:hover{
                    display:block;
                 }
-    
+
                 &__list{
-                    padding: 20px;
+                    padding: 0px 20px;
                     &-item{
                         &:hover{
                             cursor: pointer;
                             background-color: $highlight-blue;
                         }
                     }
-                }  
+                }
             }
         }
     }

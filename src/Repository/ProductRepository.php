@@ -40,4 +40,24 @@ class ProductRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function getSortedProductList(string $sortCriteria): array
+    {
+        return$this->createQueryBuilder('p')
+        ->orderBy('p.' . $sortCriteria,'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function getSortedAndFilteredProductList(string $sortCriteria, string $filterCriteria): array
+    {
+        $upperCaseFilterCriteria = strtoupper($filterCriteria);
+        return$this->createQueryBuilder('p')
+        ->andWhere('UPPER(p.name) LIKE :filterVal OR UPPER(p.description) LIKE :filterVal')
+        ->setParameter('filterVal', '%'.$upperCaseFilterCriteria.'%')
+        ->orderBy('p.' . $sortCriteria,'ASC')
+        ->getQuery()
+        ->getResult();
+    }
+
 }

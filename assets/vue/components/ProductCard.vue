@@ -26,10 +26,9 @@ export default {
   },
   methods: {
     goToProductPage(){
-      location.href = "../Product/" + this.productInfo.productid;
+      location.href = "../product/" + this.productInfo.productid;
     }
   },
-  
 }
 
 </script>

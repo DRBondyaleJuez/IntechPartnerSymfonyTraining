@@ -57,25 +57,5 @@ class ProductController extends AbstractController
 */
     }
 
-    public function insertProduct($productInfo): Response
-    {
-        $currentProduct = new Product();
-        $currentProduct->setProductid($productInfo->{'productid'});
-        $currentProduct->setName($productInfo->{'name'});
-        $currentProduct->setDescription($productInfo->{'description'});
-        $currentProduct->setPackage($productInfo->{'package'});
-        $currentProduct->setContent($productInfo->{'content'});
-        $currentProduct->setPrice($productInfo->{'price'});
-        $currentProduct->setPackage($productInfo->{'offerprice'});
-        $currentProduct->setContent($productInfo->{'tax_percentage'});
-        $currentProduct->setPrice($productInfo->{'mediaurl'});
 
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $this->entityManager->persist($currentProduct);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $this->entityManager->flush();
-
-        return new Response('Saved new product with id '.$currentProduct->getId());
-    }
 }

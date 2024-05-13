@@ -1,15 +1,9 @@
 <template>
   <div class="product-catalog-section">
     <div class="product-card-section">
-      <ProductCard v-for="currentProductInfo in productInfoList" 
+      <ProductCard v-for="currentProductInfo in productInfoList"
       v-bind:productInfo="currentProductInfo" v-bind:key="currentProductInfo.productid">
     </ProductCard>
-
-      <!--
-      <ProductCard v-for="currentProductInfo in productInfoList" 
-        v-bind:productInfo="currentProductInfo" v-bind:key="currentProductInfo.productid">
-      </ProductCard>-->
-
     </div>
   </div>
 </template>
@@ -20,29 +14,36 @@ import ProductCard from "./ProductCard.vue";
 export default {
   name: "ProductCatalog",
   components: {
-    ProductCard    
+    ProductCard
+  },
+  props: {
+    sortCriteria: String,
+    filterCriteria: String,
   },
   data() {
     return {
-      productInfoList: [],
-      productInfoItemTest:{}
+      productInfoList: []
     };
   },
   created() {
     this.buildProductCardSection();
   },
-  computed:{
-    finalMessage(){
-      return this.testMessage + testFunction();
+  watch:{
+    sortCriteria(newVal,oldVal) {
+      if(newVal != oldVal){
+        this.buildProductCardSection();
+      }
+    },
+    filterCriteria(newVal,oldVal) {
+      if(newVal != oldVal){
+        this.buildProductCardSection();
+      }
     }
   },
   methods: {
     async buildProductCardSection() {
       try {
         this.productInfoList =  await this.requestProductInfo();
-        console.log("Product Info list:");
-        console.log(this.productInfoList);
-
       } catch (error) {
         console.error(`Unable to build product card section: ${error}`);
       }
@@ -50,7 +51,8 @@ export default {
 
     async requestProductInfo() {
       try {
-        let productInfoListResponse = await fetch("../catalogAPI", {
+        let request = "../catalogAPI?sortBy=" + this.sortCriteria + "&filterBy=" + this.filterCriteria;
+        let productInfoListResponse = await fetch(request, {
           method: "GET",
         });
 
@@ -63,122 +65,6 @@ export default {
 };
 
 
-async function  requestProductInfoJSON() {
-  return productInfoJSON
-}
-
-var productInfoJSON = [
-  {
-    "productid": "H4A68A3",
-    "name": "SR VIVODENT A-D ANT SUP A68 A3",
-    "description": "El aspecto natural y las excelentes propiedades químicas hablan por la línea de dientes SR Vivodent ahora en colores A-D y 5 tonalidades de colores Bleach. La amplia selección de 20 formas superiores y 8 formas A inferiores se basan en las conocidas formas anatómicas de los dientes anteriores Ivoclar Vivadent. Particularmente conveniente para las prótesis combinadas. Los dientes anteriores Ivoclar Vivadent están divididos en formas cuadradas, triangulares y ovaladas. Aún cuando se trata sólo de una descripción genérica, hay ciertas características que se corresponden con estas categorías. Cabe mencionar, que cada forma posee su inconfundible carácter. Por lo que debería contemplarse siempre todo el conjunto de la tablilla y no exclusivamente como una característica individual.",
-    "package": "ENVASE",
-    "content": "1 unidad",
-    "price": 13.75,
-    "offerprice": 13.58,
-    "tax_percentage": 10.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/h424ba35.jpg"
-  },
-  {
-    "productid": "H00298",
-    "name": "ORMALAB 85",
-    "description": "Silicona pesada de dureza 85 Shore. Indispensable donde se requieren prestaciones de dureza y resistencia al calor.",
-    "package": "ENVASE",
-    "content": "5 kg. + 2 Catalizadores",
-    "price": 62.86,
-    "offerprice": 62.18,
-    "tax_percentage": 21.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/H00298.jpg"
-  },
-  {
-    "productid": "H4A8D2",
-    "name": "SR VIVODENT A-D ANT INF A8 D2",
-    "description": "El aspecto natural y las excelentes propiedades químicas hablan por la línea de dientes SR Vivodent ahora en colores A-D y 5 tonalidades de colores Bleach. La amplia selección de 20 formas superiores y 8 formas A inferiores se basan en las conocidas formas anatómicas de los dientes anteriores Ivoclar Vivadent. Particularmente conveniente para las prótesis combinadas. Los dientes anteriores Ivoclar Vivadent están divididos en formas cuadradas, triangulares y ovaladas. Aún cuando se trata sólo de una descripción genérica, hay ciertas características que se corresponden con estas categorías. Cabe mencionar, que cada forma posee su inconfundible carácter. Por lo que debería contemplarse siempre todo el conjunto de la tablilla y no exclusivamente como una característica individual.",
-    "package": "ENVASE",
-    "content": "1 unidad",
-    "price": 13.75,
-    "offerprice": 13.58,
-    "tax_percentage": 10.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/h424ba35.jpg"
-  },
-  {
-    "productid": "H42930",
-    "name": "INITIAL IQ ONE SQIN SYSTEM SET 228GR",
-    "description": "Initial IQ ONE SQIN<BR>Un nuevo y eficaz concepto para piezas monolíticas y reducidas bucalmente: Máxima estética en una microcapa.<BR>Con GC Initial IQ ONE SQIN - el sistema de cerámica de color y forma que se puede pintar - se pueden conseguir rápida y fácilmente resultados estéticos elevados, comparables a los de las restauraciones estratificadas convencionales, pero con una importante ganancia de tiempo. El sistema consta de tres elementos.<BR>GC Initial IQ SQIN <BR>- Completa el contorno final de sus restauraciones ofreciendo vitalidad, textura y brillo natural.<BR>- Forma y textura fácil<BR>- Efecto autoglaseado <BR>- Estructura superficial 3D",
-    "package": "ESTUCHE",
-    "content": "10x SPS Stain (SPS-1 / 2 / 7 / 8 / 13 /14 / 17 / 18 / 19 / 20), 3g<br>1x SPS Glaze Fluo (GL-FLUO), 10g<br>1x SPS Glaze Liquid, 25ml<br>2x IQ LP ONE Lustre Paste Neutral (L-N / L-NFL), 4g<br>4x IQ LP ONE Lustre Body Shade (L-A / B / C / D), 4g<br>6x IQ LP ONE Enamel Effect Shade (L-3 / 6 / 8 / 9/ 10 / OP), 4g<br>1x IQ LP ONE/NF Diluting Liquid, 8ml<br>1x IQ LP ONE/NF Refresh Liquid, 8ml<br>5x IQ SQIN Powder Dentin (Body A / B / C / D / BL-D), 10g<br>5x IQ SQIN Powder Enamel (E-57 / 58 / 59 / 60 / BL-E), 10g<br>1x IQ SQIN Powder Translucent Opal Booster (TO), 10g<br>3x IQ SQIN Powder GUM (light, dark, neutral), 10g<br>1x IQ SQIN Form & Texture Liquid, 25ml<br>1x IQ LP ONE Mixing Dish<br>1x IQ LP ONE Brush 00<br>1x IQ LP ONE Brush 2<br>1x IQ LP ONE Plastic Cover<br>1x IQ ONE SQIN Technical Manual<br>1x IQ LP ONE Colour Chart<br>1x SPS Colour Chart",
-    "price": 1537.80,
-    "offerprice": 1051.86,
-    "tax_percentage": 21.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/h92430.jpg"
-  },
-  {
-    "productid": "H61895",
-    "name": "CELTRA DUO LT C14 / A2",
-    "description": "Bloques para el sistema CEREC INLAB y SIRONA formado por cristal cerámico de alta calidad de silicato de litio (ZLS) reforzado con zirconio. La microestructura química única de este material lo dota de unas excelentes propiedades ópticas de traslucidez, fluorescencia y opalescencia, así como una alta resistencia a la flexión (210MPa -370MPa) que facilita el fresado acortando los tiempos de manufactura. No necesita cristalización. <br><br>Para coronas unitarias anteriores o posteriores, para implantes unitarios, inlays, onlays y carillas.",
-    "package": "ENVASE",
-    "content": "4 unidades",
-    "price": 119.76,
-    "offerprice": 119.98,
-    "tax_percentage": 21.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/H61899.jpg"
-  },
-  {
-    "productid": "H103469",
-    "name": "GC TEMP PRINT MEDIUM",
-    "description": "Es un líquido para impresión 3D para restauraciones temporales de larga duración con alta resistencia al desgaste y con la tecnología de reología de control dinámico (RCD) que asegura la estabilidad del material en cualquier momento, dándole la alta calidad continua que necesita. <br>Contiene un relleno de vidrio de sílice homogéneamente dispersos. Caracterizable con el sistema Optiglaze Color. Y fotopolimerizable en la lámpara Labolight Duo.<br><br><strong>Indicaciones</strong><br>Para coronas, puentes, incrustaciones y carillas temporales a largo plazo.",
-    "package": "ENVASE",
-    "content": "500g.",
-    "price": 272.78,
-    "offerprice": 268.09,
-    "tax_percentage": 21.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/H103468.jpg"
-  },
-  {
-    "productid": "78804",
-    "name": "FRESAS F.G. FINO 392-016 DIAMANTE PROC",
-    "description": "Fresa para turbina de diamante modelo 392 para tallado interdental",
-    "package": "CAJA",
-    "content": "3 unidades",
-    "price": 9.99,
-    "offerprice": 7.31,
-    "tax_percentage": 21.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/78804.png"
-  },
-  {
-    "productid": "H61636",
-    "name": "IPS E.MAX CAD CEREC/INLAB MT BL3 C14/5",
-    "description": "Los bloques MT están ideados para restauraciones que requieren una translucidez mayor que los bloques LT (Baja Translucidez) y una luminosidad mayor que los HT (Alta translucidez). Además, los bloques MT están indicadas para la fabricación de restauraciones a volumen total y técnica cut-back.<br>Indicado en carillas oclusales (table tops), carillas y carillas delgadas, coronas parciales y coronas.",
-    "package": "ENVASE",
-    "content": "5 bloques",
-    "price": 128.13,
-    "offerprice": 135.53,
-    "tax_percentage": 21.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/H61631.jpg"
-  },
-  {
-    "productid": "H92130",
-    "name": "CHORRO DE ARENA PLUTON",
-    "description": "Arenadora compacta de pequeñas dimensiones y altas prestaciones. Incluye 2 vasos de alta capacidad y dos boquillas móviles azul Ø 1 mm y roja Ø 1.25 mm.<br><br><strong>Ventajas:</strong><br>- Construida íntegramente en acero inoxidable, de fácil limpieza y sin oxidación.<br>- Luz led de alta potencia. <br>- Amplia visión interior. <br>- Presión de soplado hasta 6 bares.<br>- Es posible acoplar a este modelo boquillas de 0,75 mm.<br><br><strong>Datos técnicos:</strong><br>Tensión de red: 230V<br>Consumo: 4W<br>Consumo máximo de aire: 80l/min <br>Presión de trabajo: 2 a 5 bar<br>Dimensiones: 34cm(ancho) 29cm(alto) 23,5cm(fondo)<br>Peso: 7kg.",
-    "package": "SUMINISTRO",
-    "content": "Chorro de arena Plutón, 2 vasos de llenado, 2 boquillas móviles azul Ø 1 mm y roja Ø 1.25 mm.",
-    "price": 852.38,
-    "offerprice": 659.73,
-    "tax_percentage": 21.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/H92130.jpg"
-  },
-  {
-    "productid": "L9637",
-    "name": "BRAC AUTOLIGADO QUICK MBT 018 NO.14G/15G",
-    "description": "La nueva generación del bracket, llega con una eficacia mejorada, haciendo el tratamiento más agradable al usuario (paciente y doctor), y mucho más rentable. Combinado con el recientemente desarrollado bracket para molar, el resultado es un perfecto sistema coordinado que le hará ganar mucho tiempo. El Sistema de Brackets Quick 2.0. Las mejoras incluyen un nuevo clip mejorado morfológicamente, el cual puede ser fácilmente abierto y cerrado gracias al aumento de su resistencia. Así mismo, los brackets anteriores inferiores han sido rediseñados con un perfil más bajo. Nuevo clip El nuevo clip ha sido reforzado para reducir la posible deformación causada por las frecuentes aperturas y cierres del mismo. El nuevo diseño, aumenta ligeramente la tensión del clip, mejorando el control de rotación y garantiza una segura y precisa baja fricción entre el arco y la ranura. Los nuevos brackets para los dientes inferiores anteriores El nuevo diseño del bracketen los incisivos inferiores presenta un diseño de muy bajo perfi l y Ángulos redondeados. La comodidad del paciente aumenta significativamente y las irritaciones de los tejidos blandos labiales desaparecen. El nuevo bracket para molar Quick 2.0 representa una opción de tratamiento muy eficiente. El nuevo bracket para molar ® ofrece enormes ventajas en el cambio de arcos. Los inconvenientes del doblado de los arcos por distal de los tubos de 1º y 2º molar son casos del pasado. El tiempo empleado en cortar y doblar el extremo distal del arco en la boca del paciente ya no es necesario y puede hacerse fuera de la boca Diseño El nuevo bracket para molar es compatible así mismo, con la versión anterior de bracket Quick y ofrece una gran facilidad en el ligado. Abra el clip, inserte el arco en la ranura del bracket y cierre nuevamente el clip presionando sobre el extremo del clip. Fácil Cuando se trabaja con tubos molares convencionales, los arcos de NiTi a menudo dificultan el corte y doblado por distal. Con el nuevo bracket para molar, el arco es medido en el modelo fuera de boca (se corta y se dobla sobre el modelo). Una vez preparado el arco solamente es necesario insertando en la ranura y cerrar los clips. Esto representa grandes ventajas y especialmente la ganancia de tiempo frente a los tubos convencionales. Más seguro Al cortar los arcos fuera de boca desaparece el peligro de que el extremo del arco cortado caiga en al faringe del paciente. Por otra parte, en ocasiones se hace muy complicado cortar en boca arcos extremadamente finos, (0.010 - 0.013 ) Versátil Para adaptarse a sus necesidades el nuevo bracket molar se presenta en dos versiones: la versión Standard con la base tridimensional característica del bracket Quick y la versión Big Foot que consiste en una base sobredimensionada que se puede adaptar fácilmente al molar.",
-    "package": "ENVASE",
-    "content": "5 brackets",
-    "price": 70.79,
-    "offerprice": 69.87,
-    "tax_percentage": 10.00,
-    "mediaurl": "https://proshop-proclinic-staging.s3.eu-west-1.amazonaws.com/proclinic-es/products/L0025.jpg"
-  }
-]
 
 </script>
 
