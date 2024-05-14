@@ -98,9 +98,9 @@ class InsertProductsCommand extends Command
         $currentProduct->setDescription($productInfo['description']);
         $currentProduct->setPackage($productInfo['package']);
         $currentProduct->setContent($productInfo['content']);
-        $currentProduct->setPrice(floatval($productInfo['price']));
-        $currentProduct->setOfferprice(floatval($productInfo['offerprice']));
-        $currentProduct->setTaxPercentage(floatval($productInfo['tax_percentage']));
+        $currentProduct->setPrice(intval(floatval($productInfo['price'])*100));
+        $currentProduct->setOfferprice(intval(floatval($productInfo['offerprice'])*100));
+        $currentProduct->setTaxPercentage(intval(floatval($productInfo['tax_percentage'])*100));
         $currentProduct->setMediaurl($productInfo['mediaurl']);
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)

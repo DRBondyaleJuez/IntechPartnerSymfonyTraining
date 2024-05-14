@@ -4,6 +4,13 @@
     @include flex-row-centered;
     justify-content: space-around;
     max-width: 1000px;
+    padding-bottom:20px;
+    border-bottom: solid 2px white;
+
+    h3,p{
+        margin:0;
+        padding:0;
+    }
 
     .sort-section{
         @include flex-row-centered;
@@ -22,10 +29,11 @@
 
             .sort-input{
                 @include flex-row-centered;
-                justify-content: space-evenly;
+                justify-content: space-between;
                 width: 100%;
                 height: 100%;
-                padding:0;
+                margin: 0;
+                padding: 2px 5px;
                 border:none;
                 color: $dark-button-grey;
             }
@@ -35,7 +43,7 @@
                 padding:0;
                 position: absolute;
                 z-index: 1;
-                top:65%;
+                top: 80%;
                 display: none;
                 background-color: white;
                 box-shadow: 0 2px 2px $dark-button-grey;
@@ -45,8 +53,9 @@
                 }
 
                 &__list{
-                    padding: 0px 20px;
+                    padding: 0px 10px;
                     &-item{
+                        list-style-type: none;
                         &:hover{
                             cursor: pointer;
                             background-color: $highlight-blue;

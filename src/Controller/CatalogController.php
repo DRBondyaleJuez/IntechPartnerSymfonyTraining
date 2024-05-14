@@ -23,9 +23,7 @@ class CatalogController extends AbstractController
     #[Route('/catalog', methods: ['GET'])]
     public function displayCatalog(): Response
     {
-        return $this->render('catalog/displayCatalog.html.twig', [
-            //'productInfo' => $productInfo
-        ]);
+        return $this->render('catalog/displayCatalog.html.twig', []);
     }
 
 }

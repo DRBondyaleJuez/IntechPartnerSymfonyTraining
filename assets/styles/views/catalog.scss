@@ -1,22 +1,51 @@
 @import '../utils/index';
+@import '../base/typography.scss';
 @import '../components/buttons.scss';
 @import '../components/product-card.scss';
 @import '../layout/filter-header.scss';
+@import '../base/typography.scss';
 
+
+h1,h2,h3,p{
+    font-family: 'Noto Sans';
+}
 
 body{
 background-color: $product-beige;
+position: relative;
+
 }
 
+header{
+    @include header-striped-background;
+    display: flex;
+    justify-content: center;
+    inset: 0;
+    margin:auto;
 
+    .header-title{
+        width: 1000px;
+        text-align: left;
+    }
+}
 
-
+.filters-section-wrapper {
+    inset: 0;
+    margin:auto;
+}
 
 .product-card-section {
     @include flex-row-centered;
+    justify-content: left;
+    inset:0;
+    margin:auto;
+    width:90%;
     flex-flow:wrap;
     gap: 20px;
 
+    @include phone {
+        justify-content: center; // Styles for 'small' breakpoint or above (568px)
+    }
 }
 
 

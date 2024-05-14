@@ -2,6 +2,11 @@
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('styles/displayProduct') }}
+    <!-- Fonts links importing -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
 {% endblock %}
 
 {% block title %}Product {% endblock %}
@@ -30,17 +35,19 @@
     <div class="product-content-section">
 
         <div class="product-image-section">
-            <img class="product-image" src="{{ productInfo.getMediaurl()}}">
+            <div class="zoomable-image-section">
+                <img class="product-image zoomable-image" src="{{ productInfo.getMediaurl()}}">
+            </div>
         </div>
 
         <div class="product-info-section">
 
             <div class="product-price-section">
-                <h2 class="product-price">
-                    {{ productInfo.getPrice()}}€
+                <h2 class="product-price" data-price="{{ productInfo.getPrice() }}">
+                    {{ productInfo.getPrice()/100 }} €
                 </h2>
                 <h2 class="product-offerprice" data-price="{{ productInfo.getOfferprice() }}">
-                    {{ productInfo.getOfferprice()}}€
+                    {{ productInfo.getOfferprice()/100 }} €
                 </h2>
 
             </div>

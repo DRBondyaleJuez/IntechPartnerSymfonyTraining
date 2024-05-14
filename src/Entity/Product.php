@@ -106,6 +106,43 @@ class Product
         return $this;
     }
 
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getOfferprice(): ?int
+    {
+        return $this->offerprice;
+    }
+
+    public function setOfferprice(int $offerprice): static
+    {
+        $this->offerprice = $offerprice;
+
+        return $this;
+    }
+
+    public function getTaxPercentage(): ?int
+    {
+        return $this->tax_percentage;
+    }
+
+    public function setTaxPercentage(int $tax_percentage): static
+    {
+        $this->tax_percentage = $tax_percentage;
+
+        return $this;
+    }
+
+    /*
     public function getPrice(): ?float
     {
         return $this->price;
@@ -141,6 +178,7 @@ class Product
 
         return $this;
     }
+    */
 
     public function getMediaurl(): ?string
     {

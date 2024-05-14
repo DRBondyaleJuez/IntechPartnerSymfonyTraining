@@ -3,22 +3,23 @@
 @import '../components/buttons.scss';
 @import '../components/shopping-cart-pluggin.scss';
 @import '../components/spinner.scss';
+@import '../components/zoomable-image.scss';
 
 
 .main-wrapper{
     display:flex;
     flex-direction: column;
     justify-content: center;
+
+    h1,h2,h3,button,p {
+        font-family:"Noto Sans",sans-serif;
+    }
 }
 
 .header{
     @include flex-row-centered;
-    //max-width:1000px;
+    @include header-striped-background;
     text-transform: uppercase;
-    background-image: url(http://neighborhood.swiftideas.net/wp-content/uploads/2013/06/ff_rp_bkg2.png);
-    background-repeat: repeat;
-    background-position: center top;
-    background-size: auto;
     width:100%;
     justify-content:space-evenly;
 }
@@ -39,11 +40,15 @@
 
     .product-image-section{
         flex:1;
+        align-self: self-start;
         height:500px;
         width:500px;
         max-width: 500px;
         background-color: $product-beige;
         margin:20px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
 
         .product-image{
             width:100%;

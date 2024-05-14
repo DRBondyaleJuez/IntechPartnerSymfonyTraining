@@ -8,8 +8,8 @@
     <div class="product-card__product-info">
       <p class="product-card__product-name"> {{productInfo.name.toLowerCase()}} </p>
       <div class="product-card__price-section">
-        <p class="product-card__price"> {{productInfo.price}} € </p>
-        <p class="product-card__offerprice"> {{productInfo.offerprice}} € </p>
+        <p class="product-card__price"> {{moneyParser(productInfo.price)}} </p>
+        <p class="product-card__offerprice"> {{moneyParser(productInfo.offerprice)}} </p>
       </div>
     </div>
   </div>
@@ -27,6 +27,9 @@ export default {
   methods: {
     goToProductPage(){
       location.href = "../product/" + this.productInfo.productid;
+    },
+    moneyParser(intValue){
+      return (intValue/100).toFixed(2) + " €";
     }
   },
 }

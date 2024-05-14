@@ -47,11 +47,11 @@ class CatalogAPIController extends AbstractController
             $this->logger->info('######## RETURNING PRODUCT LIST SORTED BY ' . $sortCriteria);
         } else {
             //WITH FILTER CRITERIA SCENARIO
+            $this->logger->info('######## RETURNING PRODUCT LIST SORTED BY ' . $sortCriteria . ' AND FILTERED BY ' . $filterParam);
             $productInfoArray = $productRepository->getSortedAndFilteredProductList($sortCriteria,$filterParam);
         }
 
-        $this->logger->info('######## RETURNING PRODUCT LIST SORTED BY ' . $sortCriteria . ' AND FILTERED BY ' . $filterParam);
-        return $this->json($productInfoArray);
+return $this->json($productInfoArray);
     }
 
     private function sortParser(String $sortDisplayName): String

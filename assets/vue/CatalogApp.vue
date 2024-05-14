@@ -2,19 +2,21 @@
     <div>
         <header>
             <h1 class="header-title"> PRODUCT CATALOG </h1>
-        </header>
-        <FilterMenu @apply-sort-criteria = "applySortCriteria" @apply-filter-criteria = "applyFilterCriteria"></FilterMenu>
-        <ProductCatalog
+         </header>
+
+         <FilterMenu @apply-sort-criteria = "applySortCriteria" @apply-filter-criteria = "applyFilterCriteria"></FilterMenu>
+
+        <CardDisplay
             :sortCriteria = "currentSortCriteria"
             :filterCriteria = "currentFilterCriteria"
-        ></ProductCatalog>
+        ></CardDisplay>
     </div>
 </template>
 
 <script>
 
-import FilterMenu from '../vue/components/FilterMenu.vue'
-import ProductCatalog from '../vue/components/ProductCatalog.vue'
+import FilterMenu from './components/FilterMenu.vue'
+import CardDisplay from './components/CardDisplay.vue'
 
 export default {
     name: "App",
@@ -26,7 +28,7 @@ export default {
     },
     components:{
         FilterMenu,
-        ProductCatalog
+        CardDisplay
     },
     methods: {
         applySortCriteria(appliedSortCriteria){
@@ -45,50 +47,7 @@ export default {
 </script>
 
 <style scoped>
-header {
-    background-color: blue;
-}
 
-FilterMenu {
-background-color: orange;
-}
 </style>
 
 
-<!--
-
-
-<script setup>
-import FilterMenu from './components/FilterMenu.vue'
-import ProductCatalog from './components/ProductCatalog.vue'
-</script>
-
-<template>
-    <div>
-    <header>
-        <h1 class="header-title"> PRODUCT CATALOG <h1>
-    </header>
-
-    <main>
-        <FilterMenu />
-        <ProductCatalog />
-    </main>
-    </div>
-</template>
-
-<style scoped>
-header {
-    background-color: blue;
-}
-
-main {
-background-color: orange;
-}
-</style>
-
-
-
-
-
-
--->

@@ -2,8 +2,6 @@
   <div class="filter-menu-section">
     <div class="filters-section-wrapper">
 
-      <h2> Filters:</h2>
-
       <div class="sort-section">
         <h3> Sort by: </h3>
         <div class="sort-dropdown-section">
@@ -15,7 +13,7 @@
             <ul class="sort-dropdown__list">
               <li class="sort-dropdown__list-item" v-on:click="sortProductCatalog('Name')">Name</li>
               <li class="sort-dropdown__list-item" v-on:click="sortProductCatalog('Price')">Price</li>
-              <li class="sort-dropdown__list-item" v-on:click="sortProductCatalog('ProductID')">id</li>
+              <li class="sort-dropdown__list-item" v-on:click="sortProductCatalog('ProductID')">ProductID</li>
             </ul>
           </div>
         </div>
@@ -23,12 +21,10 @@
       </div>
 
       <div class="text-filter-section">
-        <input class = "text-filter-input">
+        <input class = "text-filter-input" v-on:keyup.enter="applyFilter()" v-on:keyup="applyFilter()">
         <button class = "text-filter-button" v-on:click="applyFilter()"> 🔍 </button>
       </div>
-
     </div>
-
   </div>
 </template>
 
@@ -37,7 +33,8 @@
     name:"FilterMenu",
     data() {
       return {
-        sortDropdownCriteria:['Name', 'Price', 'ProductID']
+        sortDropdownCriteria:['Name', 'Price', 'ProductID'],
+        previousFilterParameterLength: 0
       };
     },
     methods: {
@@ -48,26 +45,23 @@
         };
       },
       applyFilter(){
-        console.log('Apply Filter clicked');
         let filterParameter = document.querySelector('.text-filter-input').value;
-        this.$emit('apply-filter-criteria', filterParameter);
+        if(filterParameter.length > 1 || filterParameter.length < this.previousFilterParameterLength){
+          console.log('Apply Filter');
+          this.$emit('apply-filter-criteria', filterParameter);
+        }
+        this.previousFilterParameterLength = filterParameter.length;
       },
       sortProductCatalog(sortParameter){
         document.querySelector('.sort-input__label').innerHTML = sortParameter;
         this.$emit('apply-sort-criteria',sortParameter);
       }
     },
-    created() {
-      //this.buildSortCriteriaDropdown();
+    onMounted() {
+      this.buildSortCriteriaDropdown();
     },
 }
-
 </script>
 
-
-
 <style>
-
-
-
 </style>

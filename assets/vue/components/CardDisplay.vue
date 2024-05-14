@@ -1,5 +1,5 @@
 <template>
-  <div class="product-catalog-section">
+  <div class="card-display-section">
     <div class="product-card-section">
       <ProductCard v-for="currentProductInfo in productInfoList"
       v-bind:productInfo="currentProductInfo" v-bind:key="currentProductInfo.productid">
@@ -29,15 +29,11 @@ export default {
     this.buildProductCardSection();
   },
   watch:{
-    sortCriteria(newVal,oldVal) {
-      if(newVal != oldVal){
+    sortCriteria() {
         this.buildProductCardSection();
-      }
     },
-    filterCriteria(newVal,oldVal) {
-      if(newVal != oldVal){
+    filterCriteria() {
         this.buildProductCardSection();
-      }
     }
   },
   methods: {
@@ -63,12 +59,7 @@ export default {
     },
   },
 };
-
-
-
 </script>
-
-
 
 <style scoped>
 </style>

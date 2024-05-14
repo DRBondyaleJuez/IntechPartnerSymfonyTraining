@@ -17,3 +17,32 @@
     object-fit: contains;
 }
 
+@mixin header-striped-background{
+    background-image: url(http://neighborhood.swiftideas.net/wp-content/uploads/2013/06/ff_rp_bkg2.png);
+    background-repeat: repeat;
+    background-position: center top;
+    background-size: auto;
+}
+
+$mobile-landscape-width: 568px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin phone {
+    @media (min-width: #{$mobile-landscape-width}) and (max-width: #{$tablet-width - 1px}) {
+      @content;
+    }
+  }
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+

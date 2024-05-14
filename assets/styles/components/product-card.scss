@@ -63,11 +63,16 @@ p{
         z-index: 100;
         padding: 5px 20px;
         color: $dark-button-grey;
+        font-size: 13px;
     }
 
     &__product-name {
         flex: 2;
         text-transform: capitalize;
+
+        &:hover{
+            color:$highlight-turquoise;
+        }
     }
 
     &__price-section {

@@ -41,7 +41,29 @@ addToCartButton.addEventListener("click", addQuantityToShoppingCart);
 function addQuantityToShoppingCart() {
     console.log("Add to cart clicked");
     let numberOfItems = quantityInput.value;
-    let productPrice100 = parseFloat(productPrice)*100;
-    let quantityToDisplay = (productPrice100*numberOfItems/100).toFixed(2);
+    let quantityToDisplay = (productPrice*numberOfItems/100).toFixed(2);
     shoppingPriceDisplay.innerHTML = quantityToDisplay + " €";
 }
+
+//Image Zoom
+let zoomableImageSection = document.querySelector('.zoomable-image-section');
+let zoomableImage = document.querySelector('.zoomable-image');
+let zoomableImageUrl = zoomableImage.getAttribute("src");
+zoomableImageSection.style.backgroundImage = 'none';
+zoomableImageSection.addEventListener("mousemove",zoomImageAction);
+
+function zoomImageAction(e){
+    console.log("mouse hovering over zoomable image");
+    zoomableImageSection.style.backgroundImage = 'url(' + zoomableImageUrl +')';
+
+    var zoomer = e.currentTarget;
+    e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX;
+    e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX;
+    let x = offsetX/zoomer.offsetWidth*100;
+    let y = offsetY/zoomer.offsetHeight*100;
+    zoomer.style.backgroundPosition = x + '% ' + y + '%';
+}
+
+zoomableImageSection.addEventListener("mouseout",()=> {
+    zoomableImageSection.style.backgroundImage = 'none';
+});
