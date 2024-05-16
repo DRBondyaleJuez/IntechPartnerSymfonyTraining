@@ -48,7 +48,7 @@ class InsertProductsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln([
-            'Beginning to add products form file ' . $this -> productsFilePath . ' ...'."\n"
+            "Beginning to add products form file {$this->productsFilePath}"."\n"
              .'================================='
         ]);
 
@@ -62,7 +62,7 @@ class InsertProductsCommand extends Command
 
         for($i = 0; $i < count($productList); $i++){
             $output->writeln([
-                'Inserting product: ' .$productList[$i]['productid'] .'...'
+                "Inserting product: {$productList[$i]['productid']} ..."
             ]);
             $this->insertProduct($productList[$i]);
         }
@@ -79,6 +79,10 @@ class InsertProductsCommand extends Command
             .'CURRENT PRODUCT TABLE STATE (productid|name): '."\n"
             .shell_exec("php bin/console dbal:run-sql 'SELECT productid, name FROM product'")
         ]);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $this->entityManager->flush();
+
         return Command::SUCCESS;
 
         // or return this if some error happened during the execution
@@ -106,8 +110,7 @@ class InsertProductsCommand extends Command
         // tell Doctrine you want to (eventually) save the Product (no queries yet)
         $this->entityManager->persist($currentProduct);
 
-        // actually executes the queries (i.e. the INSERT query)
-        $this->entityManager->flush();
+
 
 
         return true;

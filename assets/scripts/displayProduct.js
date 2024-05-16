@@ -1,3 +1,44 @@
+//Shopping cart info collecting and display
+let shoppingCartContent = [];
+let shoppingCostDisplay = document.querySelector('.shopping-cart-pluggin__price-display');
+await modifyShoppingCostDisplayed();
+async function modifyShoppingCostDisplayed() {
+    try {
+        shoppingCartContent =  await this.requestShoppingCartInfo();
+        let costDisplay = moneyParser(calculateShoppingCartTotalCost(shoppingCartProductList));
+        shoppingCostDisplay.innerHTML = costDisplay;
+    } catch (error) {
+      console.error(`Unable to build product card section: ${error}`);
+    }
+}
+
+async function requestShoppingCartInfo() {
+try {
+    let request = "../../shoppingCart";
+    let shoppingCartListResponse = await fetch(request, {
+    method: "GET",
+    });
+    return shoppingCartListResponse.json();
+} catch (error) {
+    console.error(`Could not get shopping-cart products: ${error}`);
+}
+}
+
+function calculateShoppingCartTotalCost(shoppingCartList){
+    let totalCost = 0;
+    if(shoppingCartList.length > 0){
+        shoppingCartList.forEach((product)=>{
+            totalCost += product['price']*product['amount'];
+        });
+    }
+    return totalCost;
+}
+
+function moneyParser(intValue){
+    return (intValue/100).toFixed(2) + " €";
+}
+
+
 
 // Description Interaction
 let productDescriptionTitleSection = document.querySelector('.product-description-section__title-section');
@@ -40,9 +81,23 @@ let shoppingPriceDisplay = document.querySelector('.shopping-cart-pluggin__price
 addToCartButton.addEventListener("click", addQuantityToShoppingCart);
 function addQuantityToShoppingCart() {
     console.log("Add to cart clicked");
+    let currentProductId = window.location.hrefsplit("/").pop()
     let numberOfItems = quantityInput.value;
-    let quantityToDisplay = (productPrice*numberOfItems/100).toFixed(2);
-    shoppingPriceDisplay.innerHTML = quantityToDisplay + " €";
+    let quantityToDisplay = moneyParser(productPrice*numberOfItems)
+    shoppingPriceDisplay.innerHTML = quantityToDisplay
+}
+
+function modifyShoppingCartPersistence(){
+    const axios = require("axios");
+
+    axios
+        .put(
+            SHOPPING_CART_PERSISTENCE_URL,
+            shoppingCartContent,
+            {headers: {"Content-Type": "application/json"}}
+        )
+        .then(r => console.log(r.status))
+        .catch(e => console.log(e));
 }
 
 //Image Zoom

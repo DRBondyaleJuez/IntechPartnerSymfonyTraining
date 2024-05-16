@@ -51,7 +51,7 @@ class CatalogAPIController extends AbstractController
             $productInfoArray = $productRepository->getSortedAndFilteredProductList($sortCriteria,$filterParam);
         }
 
-return $this->json($productInfoArray);
+        return $this->json($productInfoArray);
     }
 
     private function sortParser(String $sortDisplayName): String
